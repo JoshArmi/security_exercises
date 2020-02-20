@@ -10,21 +10,31 @@ Any string will do, as long as it is between 4 and 56 characters, e.g. "mysecret
 
 Then pick a file on your laptop, and open a terminal session in the folder
 
+Copy the `Dockerfile` file down to the folder
+
+Run `docker build -t exercise1 .`
+
 Now we can encrypt the file:
 
-`docker run josharmi/blowfish:stable -v ${PWD}:. encrypt <key> <file>`
+Run `docker run -it exercise1`
 
-For example: `docker run josharmi/blowfish:stable -v ${PWD}:. encrypt mysecretkey secret.txt`
+Let's create a file by `echo <your-file-content> >> file`
 
-Now if you look in the folder, we can see a new file called **encrypted**
+`aescrypt -e -p <password> file` (Pick any password you want)
+
+Now if you look in the folder, we can see a new file called `file.aes`
+
+If you look at the contents by running `cat file.aes` it should be garbage
+
+Now let's delete the original file
+
+`rm file`
 
 Now we can decrypt the file:
 
-`docker run josharmi/blowfish:stable -v ${PWD}:. decrypt <key>`
+`aescrypt -d -p <password> file`
 
-For example: `docker run josharmi/blowfish:stable -v ${PWD}:. decrypt mysecretkey`
-
-Now you should have a file called **decrypted** in the folder, and if you open it, the contents should be the same as the file you encrypted in the first place
+Now if we run `cat file` we should see the original file
 
 ## Questions
 
