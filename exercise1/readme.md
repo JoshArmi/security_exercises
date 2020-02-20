@@ -22,7 +22,7 @@ Now we can decrypt the file:
 
 `docker run josharmi/blowfish:stable -v ${PWD}:. decrypt <key>`
 
-For example: `docker run josharmi/blowfish:stable -v ${PWD}:. encrypt mysecretkey`
+For example: `docker run josharmi/blowfish:stable -v ${PWD}:. decrypt mysecretkey`
 
 Now you should have a file called **decrypted** in the folder, and if you open it, the contents should be the same as the file you encrypted in the first place
 
